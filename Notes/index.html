@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+
+</head>
+
+<body>
+    <section class="hero is-primary" style="background-color:#0A3D62;">
+            <div class="container">
+                <h1 class="title" style="padding-top:30px;padding-bottom:30px">
+                    <center>MY NOTES</center>
+                        <form action="/logout" method="GET" >
+                           <input type="submit"  style="background-color:#E8290B;color:white;float:right;font-size: 18px;padding: 10px 24px;" value="LOGOUT">
+                        </form>
+
+                </h1>
+
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="section">
+       <div class="container">
+            <div class="columns">
+                <div class="column is-offset-2 is-9">
+                     <form action="/" method="GET">
+                            {% for n in notes %}
+                               <div class="box" style="background-color:#0A3D62;color:white">
+                                   <p><span>{{n['note']}}</span>
+                                   <a href="/remove?_id={{n['_id']}}" style="float:right;color:#FF362E">
+                                    Mark Completed
+                                   </a></p>
+                               </div><br/>
+                             {% endfor %}
+                    </form>
+                </div>
+            </div>
+       </div>
+    </section>
+
+
+
+    <section class="section" >
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-0 is-14">
+                    <form action="/add_notes" method="POST">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input type="text" class="input" placeholder="Note...." name="msg" value="{{request.form.msg }}">
+                            </div>
+                            <div class="control" >
+                                <input type="submit" class="button is-info" style="background-color:#0A3D62;color:white" value="Add note">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
